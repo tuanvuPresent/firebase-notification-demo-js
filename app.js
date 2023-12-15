@@ -24,7 +24,7 @@ messaging.requestPermission()
         console.log('start serviceWorker');
         console.log('serviceWorker' in navigator);
         if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.register('./firebase-messaging-sw.js')
+            navigator.serviceWorker.register('/firebase-notification-demo-js/firebase-messaging-sw.js')
             .then(function(registration) {
               console.log('Service Worker registered with scope:', registration.scope);
             })
