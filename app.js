@@ -15,25 +15,23 @@ var config = {
     appId: "1:505282953334:web:db8d69d9f74dc3100a5f57",
     measurementId: "G-61LZQCJPL0"
 };
-console.log('start serviceWorker');
-console.log('serviceWorker' in navigator);
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/firebase-notification-demo-js/firebase-messaging-sw.js')
-    .then(function(registration) {
-      console.log('Service Worker registered with scope:', registration.scope);
-    })
-    .catch(function(error) {
-      console.error('Service Worker registration failed:', error);
-    });
-}
-
-
 
 firebase.initializeApp(config);
 
 const messaging = firebase.messaging();
 messaging.requestPermission()
     .then(function () {
+        console.log('start serviceWorker');
+        console.log('serviceWorker' in navigator);
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('./firebase-messaging-sw.js')
+            .then(function(registration) {
+              console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch(function(error) {
+              console.error('Service Worker registration failed:', error);
+            });
+        }
         console.log('I am in here');
 
         messaging.getToken()
